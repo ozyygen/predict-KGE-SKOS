@@ -1,0 +1,37 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2707
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh15600\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 PREFIX dct: <http://purl.org/dc/terms/>\
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\
+construct\
+\{ ?semanticWebConcept rdf:type skos:Concept.\
+  ?semanticWebConcept dct:created ?date.\
+  ?semanticWebConcept skos:prefLabel "Chemistry"^^xsd:string.\
+  ?childConcept rdf:type skos:Concept.\
+  ?childConcept skos:prefLabel ?name.\
+  ?childConcept  dct:created ?cdate.\
+  ?childConcept skos:broader ?semanticWebConcept.\
+  ?childConcept skos:related ?relatedConcept. \
+  ?relatedConcept skos:prefLabel ?rname;\
+                  dct:created ?rdate.\
+\}\
+WHERE \{\
+   ?semanticWebConcept rdf:type skos:Concept;\
+                      skos:prefLabel "Chemistry"^^xsd:string;\
+                      dct:created ?date.\
+  ?childConcept skos:broader* ?semanticWebConcept;\
+                dct:created ?cdate;\
+                skos:prefLabel ?name.\
+  ?childConcept skos:related ?relatedConcept.\
+  ?relatedConcept skos:prefLabel ?rname;\
+                  dct:created ?rdate.\
+  \
+  \
+\}}
