@@ -102,7 +102,7 @@ class BaseModel(nn.Module):
         r_indx = torch.tensor([int(x) for x in edge_rels.squeeze()],device=self.device)
         t_indx = torch.tensor([int(x) for x in edges[:,1]],device=self.device)
         
-        scores = self.model.predict(h_indx,r_indx,t_indx).unsqueeze(dim=1).view(batch_size,num_samples)
+        scores = self.model.predict(h_indx,r_indx,t_indx,batch_size,num_samples)
 
         # sort and calculate scores
         argsort   = torch.argsort(scores,dim = 1,descending= False)

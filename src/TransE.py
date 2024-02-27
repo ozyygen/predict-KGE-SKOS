@@ -19,6 +19,13 @@ class TransE(nn.Module):
         
         """ ref: https://stackoverflow.com/questions/72679858/cant-optimize-a-non-leaf-tensor-on-torch-parameter """
         self.optimizer    = torch.optim.Adam(params,lr=lr)
+
+    def predict(self,batch_h,batch_r ,batch_t,batch_size,num_samples):
+
+        h_embeds,r_embeds,t_embeds = self.model(batch_h,batch_r,batch_t)
+        scores = torch.norm(h_embeds+r_embeds-t_embeds,p=1,dim=1).view(batch_size,num_samples).detach().cpu()
+        return scores
+
     
     def compute_loss(self,batch):
                      
