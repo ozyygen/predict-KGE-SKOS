@@ -5,7 +5,7 @@ we propose a constraint-aware negative sampling technique that leverages informa
 ## Folders
 Data: SPARQL template to extract data from SemOpenAlex -> sparql_temp_fordata 
 
-/data-process: Applying SKOS constraints on data, matching UMLS concepts with SemOpenAlex and generating train sets ->
+    /data-process: Applying SKOS constraints on data, matching UMLS concepts with SemOpenAlex and generating train sets
 
 src: Codes for Knowledge Graph Embedding models & custom negative sampling
 
